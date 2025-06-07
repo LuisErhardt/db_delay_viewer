@@ -5,7 +5,7 @@ import LandingPage from "./components/LandingPage";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/db_delay_viewer">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/:filename" element={<CSVTable />} />
