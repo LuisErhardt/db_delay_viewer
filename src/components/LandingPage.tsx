@@ -9,7 +9,6 @@ const LandingPage: React.FC = () => {
     const fetchFiles = async () => {
       try {
         const response = await fetch(`${process.env.PUBLIC_URL}/fileList.json`);
-        if (!response.ok) throw new Error(`Fehler beim Laden der Datei: fileList.json`);
         const data = await response.json();
         console.log(data);
         setFiles(data);

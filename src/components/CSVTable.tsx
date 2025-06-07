@@ -23,10 +23,8 @@ const CSVTable: React.FC = () => {
 
       try {
         const response = await fetch(`${process.env.PUBLIC_URL}/data/${filename}`);
-        if (!response.ok) throw new Error(`Fehler beim Laden der Datei: ${response.statusText}`);
 
         const csvText = await response.text();
-
         const parsed = Papa.parse<CSVRow>(csvText, {
           header: true,
           skipEmptyLines: true,
