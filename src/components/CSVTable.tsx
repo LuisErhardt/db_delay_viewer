@@ -22,7 +22,7 @@ const CSVTable: React.FC = () => {
       setError(null);
 
       try {
-        const response = await fetch(`/data/${filename}`);
+        const response = await fetch(`data/${filename}`);
         if (!response.ok) throw new Error(`Fehler beim Laden der Datei: ${response.statusText}`);
 
         const csvText = await response.text();
