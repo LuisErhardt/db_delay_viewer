@@ -8,7 +8,7 @@ const LandingPage: React.FC = () => {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const response = await fetch("/data/fileList.json");
+        const response = await fetch("/fileList.json");
         if (!response.ok) throw new Error(`Fehler beim Laden der Datei: fileList.json`);
         const data = await response.json();
         console.log(data);
