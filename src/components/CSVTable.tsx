@@ -22,9 +22,9 @@ const CSVTable: React.FC = () => {
       setError(null);
 
       try {
-        const response = await fetch(`${process.env.PUBLIC_URL}/data/${filename}`);
-        console.log(`${process.env.PUBLIC_URL}/data/${filename}`);
-
+        const response = await fetch(`${process.env.PUBLIC_URL}/data/delays${filename}.csv`);
+        if (response.headers.get("Content-Type") === "text/html; charset=utf-8")
+          throw new Error("Datei nicht gefunden");
         const csvText = await response.text();
         const parsed = Papa.parse<CSVRow>(csvText, {
           header: true,

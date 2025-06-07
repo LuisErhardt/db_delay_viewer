@@ -1,16 +1,16 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import CSVTable from "./components/CSVTable";
 import LandingPage from "./components/LandingPage";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter basename="/db_delay_viewer">
+    <HashRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/:filename" element={<CSVTable />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

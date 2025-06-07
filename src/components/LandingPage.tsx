@@ -39,7 +39,7 @@ const LandingPage: React.FC = () => {
       <ul className="max-w-md border rounded-xl bg-white shadow space-y-2">
         {files.map((file) => (
           <a
-            href={`${process.env.PUBLIC_URL}/${encodeURIComponent(file)}`}
+            href={`${process.env.PUBLIC_URL}/#/${encodeURIComponent(file)}`}
             className="block px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-700"
             key={file}
           >

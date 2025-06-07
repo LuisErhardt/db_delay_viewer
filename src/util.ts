@@ -14,8 +14,7 @@ const monate: string[] = [
 ];
 
 export default function dateInNameUmwandeln(dateiName: string): string {
-  // Regex für "delays" + 2-stellige Zahl + ".csv"
-  const match = dateiName.match(/delays(\d{2})\.csv/);
+  const match = dateiName.match(/(\d{2})/);
   if (!match) return dateiName;
 
   const monatNummer: number = parseInt(match[1], 10);
