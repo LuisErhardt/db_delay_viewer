@@ -23,6 +23,7 @@ const CSVTable: React.FC = () => {
 
       try {
         const response = await fetch(`${process.env.PUBLIC_URL}/data/${filename}`);
+        console.log(`${process.env.PUBLIC_URL}/data/${filename}`);
 
         const csvText = await response.text();
         const parsed = Papa.parse<CSVRow>(csvText, {
