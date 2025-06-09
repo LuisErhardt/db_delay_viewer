@@ -24,9 +24,9 @@ const LandingPage: React.FC = () => {
   if (!files.length) return <p className="p-4">Lade Dateien...</p>;
 
   return (
-    <div className="p-4">
+    <div className="p-4 max-w-3xl">
       <h1 className="text-2xl font-semibold py-4">Verspätungen im Regionalverkehr in Köln Hbf</h1>
-      <p className="mb-6">
+      <p>
         Inspiriert durch diesen{" "}
         <a
           className="text-blue-700"
@@ -36,11 +36,15 @@ const LandingPage: React.FC = () => {
         </a>
         .
       </p>
-      <ul className="max-w-md border rounded-xl bg-white shadow space-y-2">
+      <p className="mb-6">
+        Die Seite zeigt Züge im Regionalverkehr mit mindenstens 60 Minuten Verspätung bei ihrer Ankunft in Köln Hbf an.
+        Die Daten werden täglich aktualisiert und können direkt monatsweise als Tabelle heruntergeladen werden.
+      </p>
+      <ul className="max-w-md border rounded-md bg-white shadow space-y-1">
         {files.map((file) => (
           <a
             href={`${process.env.PUBLIC_URL}/#/${encodeURIComponent(file)}`}
-            className="block px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-700"
+            className="block px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-700 font-semibold"
             key={file}
           >
             {dateInNameUmwandeln(file)}

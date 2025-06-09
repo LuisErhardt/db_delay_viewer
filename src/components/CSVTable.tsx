@@ -75,7 +75,9 @@ const CSVTable: React.FC = () => {
       <Link to="/" className="text-blue-600 hover:underline mb-4 inline-block">
         &larr; Zurück zur Übersicht
       </Link>
-      <h2 className="text-xl sm:text-2xl font-semibold mb-4 ">{filename ? dateInNameUmwandeln(filename) : ""}</h2>
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4 ">
+        Verspätungen (mind. 60 min) im {filename ? dateInNameUmwandeln(filename) : ""}
+      </h2>
       <button
         className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
         onClick={async () => {
