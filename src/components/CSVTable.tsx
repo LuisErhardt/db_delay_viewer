@@ -47,7 +47,7 @@ const CSVTable: React.FC = () => {
     };
 
     fetchCSV();
-  }, [filename]);
+  }, [year, filename]);
 
   async function doClick() {
     if (filename) {
