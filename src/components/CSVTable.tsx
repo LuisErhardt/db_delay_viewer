@@ -8,21 +8,24 @@ interface CSVRow {
 }
 
 const CSVTable: React.FC = () => {
-  const { filename } = useParams<{ filename: string }>();
+  const { year, filename } = useParams<{ year: string; filename: string }>();
   const [data, setData] = useState<CSVRow[]>([]);
   const [headers, setHeaders] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!filename) return;
+    if (!year || !filename) {
+      setError("Ungültige Parameter");
+      return;
+    }
 
     const fetchCSV = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(`${process.env.PUBLIC_URL}/data/delays${filename}.csv`);
+        const response = await fetch(`${process.env.PUBLIC_URL}/data/${year}/delays${filename}.csv`);
         if (response.headers.get("Content-Type") === "text/html; charset=utf-8")
           throw new Error("Datei nicht gefunden");
         const csvText = await response.text();
@@ -76,7 +79,7 @@ const CSVTable: React.FC = () => {
         &larr; Zurück zur Übersicht
       </Link>
       <h2 className="text-xl sm:text-2xl font-semibold mb-4 ">
-        Verspätungen (mind. 60 min) im {filename ? dateInNameUmwandeln(filename) : ""}
+        Verspätungen (mind. 60 min) im {filename ? dateInNameUmwandeln(filename) : ""} {year ? year : ""}
       </h2>
       <button
         className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"

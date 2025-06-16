@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import dateInNameUmwandeln from "../util";
 
+type YearMonthMap = {
+  [year: string]: string[];
+};
+
 const LandingPage: React.FC = () => {
-  const [files, setFiles] = useState<string[]>([]);
+  const [files, setFiles] = useState<YearMonthMap>({});
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -21,7 +25,6 @@ const LandingPage: React.FC = () => {
   }, []);
 
   if (error) return <p className="text-red-600 p-4">{error}</p>;
-  if (!files.length) return <p className="p-4">Lade Dateien...</p>;
 
   return (
     <div className="p-4 max-w-3xl">
@@ -41,14 +44,22 @@ const LandingPage: React.FC = () => {
         Die Daten werden täglich aktualisiert und können direkt monatsweise als Tabelle heruntergeladen werden.
       </p>
       <ul className="max-w-md border rounded-md bg-white shadow space-y-1">
-        {files.map((file) => (
-          <a
-            href={`${process.env.PUBLIC_URL}/#/${encodeURIComponent(file)}`}
-            className="block px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-700 font-semibold"
-            key={file}
-          >
-            {dateInNameUmwandeln(file)}
-          </a>
+        {Object.entries(files).map(([year, months]) => (
+          <li key={year}>
+            <div className="font-bold px-4 py-2">{year}</div>
+            <ul className="space-y-1 pl-4">
+              {months.map((month) => (
+                <li key={month}>
+                  <a
+                    href={`${process.env.PUBLIC_URL}/#/${year}/${encodeURIComponent(month)}`}
+                    className="block px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-700 font-semibold"
+                  >
+                    {dateInNameUmwandeln(month)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
         ))}
       </ul>
     </div>

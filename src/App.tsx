@@ -8,7 +8,7 @@ const App: React.FC = () => {
     <HashRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/:filename" element={<CSVTable />} />
+        <Route path="/:year/:filename" element={<CSVTable />} />
       </Routes>
     </HashRouter>
   );
