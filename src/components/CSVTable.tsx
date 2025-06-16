@@ -49,8 +49,9 @@ const CSVTable: React.FC = () => {
   async function doClick() {
     if (filename) {
       try {
-        const csv = Papa.unparse(data);
-
+        const csv = Papa.unparse(data, {
+          delimiter: ";",
+        });
         const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
         const downloadUrl = window.URL.createObjectURL(blob);
 
@@ -61,7 +62,6 @@ const CSVTable: React.FC = () => {
 
         window.URL.revokeObjectURL(downloadUrl);
       } catch (err) {
-        console.error("Fehler beim Herunterladen:", err);
         alert("Datei konnte nicht heruntergeladen werden.");
       }
     }

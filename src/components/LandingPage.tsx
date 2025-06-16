@@ -10,10 +10,10 @@ const LandingPage: React.FC = () => {
       try {
         const response = await fetch(`${process.env.PUBLIC_URL}/fileList.json`);
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setFiles(data);
       } catch (error) {
-        setError(error instanceof Error ? error.message : "Error");
+        setError("Error while loading data");
       }
     };
 
